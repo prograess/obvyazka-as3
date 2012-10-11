@@ -37,7 +37,7 @@ package com.prograess.obvyazka
 		private var receiveBuffer:ByteArray;
 		private var host:String;
 		private var port:uint;
-		
+		public static var DEBUG_MODE:Boolean = false;
 		/**
 		 * Соединение с сервером.
 		 * @param	host Номер хоста
@@ -156,6 +156,7 @@ package com.prograess.obvyazka
 				break;
 			case "J":
 				str = msg.toString();
+				if(DEBUG_MODE) trace (str);
 				var parsedObj:Object = JSON.parse(str);
 				for (var k:String in parsedObj){
 					type = k;
