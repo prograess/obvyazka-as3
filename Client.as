@@ -44,11 +44,10 @@ package com.prograess.obvyazka
 		 * @param	port Номер порта
 		 * @param	helo_phrase Кодовая фраза для связи в Обвязке
 		 */
-		public function Client(host:String, port:uint, helo_phrase:String) 
+		public function Client(host:String, port:uint) 
 		{
 			this.host = host;
 			this.port = port;
-			this.helo_phrase = helo_phrase;
 			c = new Socket();
 			receiveBuffer = new ByteArray();
 			receiveBuffer.endian = Endian.LITTLE_ENDIAN;
@@ -70,8 +69,6 @@ package com.prograess.obvyazka
 		 * Событие, принимающее из сервера данные, работа с которыми начинает происходить в функции onData.
 		 */
 		private function connectHandler(e:Event):void {
-			c.writeUTFBytes(helo_phrase);
-			c.flush();
 			dispatchEvent(e);
 			c.addEventListener(ProgressEvent.SOCKET_DATA, onData);
 		}
